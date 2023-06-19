@@ -11,7 +11,8 @@ State* root;
 /**
  * @brief Read the board from the file
  * 
- * @param fin 
+ * @param fin
+ *  
  */
 void read_board(std::ifstream& fin) {
   Board board;

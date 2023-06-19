@@ -3,11 +3,11 @@
 
 
 #include "../state/state.hpp"
-#include "./myalgorithm.hpp"
+#include "./submission.hpp"
 
-long long int count = 0;
-int int_min = -1000000;
-int int_max = 1000000;
+//long long int count = 0;
+int int_min1 = -1000000;
+int int_max1 = 1000000;
 
 /**
  * @brief Randomly get a legal action
@@ -16,19 +16,19 @@ int int_max = 1000000;
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move myalgorithm::get_move(State *state, int depth){
+Move submission::get_move(State *state, int depth){
   if(!state->legal_actions.size())
     state->get_legal_actions();
   
   auto actions = state->legal_actions;
-  int maxScore = state->player==0 ?int_min:int_max;
+  int maxScore = state->player==0 ?int_min1:int_max1;
   Move bestMove = actions[0];
 
   for(auto move : actions){
     State* nextState = state->next_state(move);
 
     //Call the minimax function to evaluate the score
-    int score = minimax(nextState, depth-1, state->player, int_min, int_max);
+    int score = minimax(nextState, depth-1, state->player, int_min1, int_max1);
 
     //Update the best move if the score is higher
     if(state->player==0&&score > maxScore){
@@ -45,7 +45,7 @@ Move myalgorithm::get_move(State *state, int depth){
   //return actions[(rand()+depth)%actions.size()];
 }
 
-int myalgorithm::minimax(State *state, int depth, bool whiteplayer, int alpha, int beta){
+int submission::minimax(State *state, int depth, bool whiteplayer, int alpha, int beta){
 
   if(!state->legal_actions.size())
   state->get_legal_actions();
@@ -55,7 +55,7 @@ int myalgorithm::minimax(State *state, int depth, bool whiteplayer, int alpha, i
     return state->evaluate();
   }
     if(whiteplayer){ //white player = find max
-        int maxScore = int_min;
+        int maxScore = int_min1;
         state->get_legal_actions();
 
 
@@ -72,7 +72,7 @@ int myalgorithm::minimax(State *state, int depth, bool whiteplayer, int alpha, i
         }
         return maxScore;
     }else{ //black player = find minimal
-        int minScore = int_max;
+        int minScore = int_max1;
         state->get_legal_actions();
 
         for (auto move : state->legal_actions){

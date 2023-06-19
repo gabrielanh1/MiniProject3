@@ -5,7 +5,6 @@
 #include "../state/state.hpp"
 #include "./myalgorithm.hpp"
 
-long long int count = 0;
 int int_min = -1000000;
 int int_max = 1000000;
 
